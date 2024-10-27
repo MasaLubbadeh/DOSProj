@@ -1,5 +1,6 @@
-import express from 'express';
-import axios from 'axios';
+const express = require('express');
+const axios = require('axios');
+
 
 const app = express();
 app.use(express.json());
@@ -17,7 +18,7 @@ app.get('/Bazar/search/:topic', async (req, res) => {
     const topic = req.params.topic;
     console.log('topic:', topic);
 
-    const response = await axios.get('http://catalogServer:4000/query', {
+    const response = await axios.get('http://localhost:4000/query', {
       params: { topic }
     });
 
