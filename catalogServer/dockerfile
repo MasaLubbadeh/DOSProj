@@ -1,0 +1,14 @@
+FROM node:latest
+
+WORKDIR /catalogServer
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+#only for documetation
+EXPOSE 4000 
+
+CMD ["node","catalog.js"]
