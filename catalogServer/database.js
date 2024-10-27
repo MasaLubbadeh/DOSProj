@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 // catalogServer.js
 
 // our database
+=======
+// databse.js // our database
+
+>>>>>>> 46d724d (requests tested on postman)
 export const data = [
   {
     id: 1,
@@ -35,10 +40,20 @@ export const data = [
 /////functions to handle database queries////
 
 export function getBooksByTopic(topic) {
+<<<<<<< HEAD
   return catalog.filter(
     (book) => book.topic.toLowerCase() === topic.toLowerCase()
   ); //case insensitive
 }
 export function getBookInfo(id) {
   return catalog.find((book) => book.id === Number(id)); // Convert id to a number
+=======
+  return data.filter(
+    (book) => book.topic.toLowerCase() === topic.toLowerCase() //case insensitive
+  ); 
+}
+
+export function getBookInfo(id) {
+  return data.find((book) => book.id === Number(id)); // convert id to a number
+>>>>>>> 46d724d (requests tested on postman)
 }

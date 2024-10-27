@@ -1,5 +1,5 @@
 import express from "express";
-import { data } from "./database.js";
+import { data, getBooksByTopic, getBookInfo } from "./database.js";
 
 const app = express();
 const PORT = 4000;
@@ -10,7 +10,8 @@ app.get("/query", (req, res) => {
 
   if (id) {
     //search book by id
-    const book = data.getBookInfo(id);
+    const book = getBookInfo(id);
+
     if (book) {
       return res.status(200).json(book);
     } else {
@@ -20,13 +21,34 @@ app.get("/query", (req, res) => {
 
   if (topic) {
     // search by topic
-    const booksByTopic = data.getBooksByTopic(topic);
+    const booksByTopic = getBooksByTopic(topic);
+    if (booksByTopic.length === 0) {
+      return res.status(404).json({ error: "No books were found for this topic" });
+    }
     return res.status(200).json(booksByTopic);
   }
 
-  return res.status(400).json({ error: " parameters are not enough " });
+  return res.status(400).json({ error: "parameters are not enough" });
 });
 
+app.post('/handleBookPurchase', (req, res) => {
+  const { id } = req.body;
+
+  const book = getBookInfo(id);  // check if the book exists
+  if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+  }
+
+  if (book.quantity <= 0) {  //if the book is out of stock
+      return res.status(400).json({ message: 'Stock is empty' }); // changed to 400 for clarity
+  }
+
+  book.quantity -= 1;//stock
+
+  return res.status(200).json({ message: 'Book purchased successfully', book });
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`catalog server  is running on  port ${PORT}`);
+  console.log(`Catalog server is running on port ${PORT}`);
 });

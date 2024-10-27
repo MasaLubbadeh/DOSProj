@@ -1,30 +1,31 @@
-// order.js
 import express from 'express';
-import data from '../catalogServer/database'; 
+import axios from 'axios'; 
 
 const app = express();
 const PORT = 5000;
 
 app.use(express.json());
 
-app.post('/purchase', (req, res) => {
-    const { id } = req.body; 
-    const book = data.getBookInfo(id); /// checking if the book exists
+app.post('/purchase', async (req, res) => {
+    const { id } = req.body;
 
-    if (!book) { //doesn't exist
-        return res.status(404).json({  message: 'Book not found' });
+    try {
+        // call catalogServer to handle purchase and stock update
+        const response = await axios.post(`http://localhost:4000/handleBookPurchase`, {
+            id: id
+        });
+
+        return res.status(response.status).json(response.data);
+        
+    } catch (error) {
+        if (error.response) {
+            // forward the error response from the catalog server
+            return res.status(error.response.status).json(error.response.data);
+        } else {
+            console.error('Error processing purchase:', error.message);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
-
-    // check book's quantity (if the book is out of stock)
-    if (book.quantity <= 0) {
-        return res.status(404).json({  message: 'Book not found' });
-    }
-
-    // Book found so we should decrement the stock quantity
-    book.quantity -= 1;
-
-    // Respond with success
-    return res.status(200).json({ message: 'Book purchased successfuly', book });
 });
 
 // Start the server
