@@ -33,3 +33,8 @@ Bazar.com consists of:
    **If you are not using Docker**
 1. Open folder using vscode or you preffered Editor
 2. Navigate into each folder and run each server in separate terminal
+![Catalog folder](images/catalog.png)
+![Order folder](images/order.png)
+![Frontend folder](images/frontend.png)
+
+
