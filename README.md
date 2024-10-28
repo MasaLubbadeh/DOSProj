@@ -120,7 +120,7 @@ Here are some screenshots of the application in action:
 
   - If the purchase fails:
     
-    ![Out of Stock](images/outOfStock.png)
+    ![Out of Stock](images/emptyStock.png)
 
   - If there is no such book:
     
