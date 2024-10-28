@@ -15,6 +15,8 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
 - [Screenshots](#screenshots)
 - [Program Design](#program-design)
 - [Why Node.js](#why-nodejs)
+- [Contributors](#contributors)
+
 
 
 ## Prerequisites
@@ -161,4 +163,9 @@ Bazar.com is structured as a microservices application, consisting of a **Catalo
 
 ## Why Node.js
 Node.js was chosen for this project due to its non-blocking, event-driven architecture, which allows for efficient handling of multiple connections simultaneously. This makes it ideal for building fast and scalable network applications, especially for an online bookstore where numerous users may access the service concurrently. Additionally, the vast ecosystem of Node.js libraries and packages simplifies development, enabling quicker implementation of features and enhancements.
+
+## Contributors
+-Masa Lubbadeh
+
+-Raya Hindi
 
