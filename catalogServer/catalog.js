@@ -9,25 +9,32 @@ app.get("/query", (req, res) => {
   const { topic, id } = req.query;
 
   if (id) {
-    //search book by id
     const book = getBookInfo(id);
-
     if (book) {
-      return res.status(200).json(book);
+        return res.status(200).json({
+            title: book.title,
+            quantity: book.quantity,
+            price: book.price
+        });
     } else {
-      return res.status(404).json({ error: "Book not found" });
+        return res.status(404).json({ error: "Book not found" });
     }
   }
 
   if (topic) {
-    // search by topic
+    // Search by topic
     const booksByTopic = getBooksByTopic(topic);
-    if (booksByTopic.length === 0) {
+    
+    // map to return only id and title for each book
+    const returnedBooks = booksByTopic.map(book => ({
+      id: book.id, title: book.title 
+    }));
+
+    if (returnedBooks.length === 0) {
       return res.status(404).json({ error: "No books were found for this topic" });
     }
-    return res.status(200).json(booksByTopic);
+    return res.status(200).json(returnedBooks);
   }
-
   return res.status(400).json({ error: "parameters are not enough" });
 });
 
@@ -45,7 +52,7 @@ app.post('/handleBookPurchase', (req, res) => {
 
   book.quantity -= 1;//stock
 
-  return res.status(200).json({ message: 'Book purchased successfully', book });
+  return res.status(200).json({ message: `Book ${book.title} purchased successfully`, book });
 });
 
 // Start the server
