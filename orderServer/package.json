@@ -1,11 +1,7 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-=======
   "type": "module",
   "dependencies": {
     "axios": "^1.7.7",
->>>>>>> 46d724d (requests tested on postman)
     "express": "^4.21.1"
   }
 }

@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  frontend:
+    build: ./frontend  
+    image: frontend-image
+    ports:
+      - "3000:3000"  # frontend server
+    networks:
+      - Bazar-network
+    volumes:
+      - ./frontend:/frontend:ro  # ReadOnly
+
+  catalogServer:
+    build: ./catalogServer
+    image: catalog-server-image
+    ports:
+      - "4000:4000"  # catalogServer port
+    networks:
+      - Bazar-network 
+
+  orderServer:
+    build: ./orderServer
+    image: order-server-image  
+    ports:
+      - "5000:5000"  # orderServer port
+    networks:
+      - Bazar-network
+
+networks:
+  Bazar-network:  
+    external: false

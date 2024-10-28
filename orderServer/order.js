@@ -11,7 +11,7 @@ app.post('/purchase', async (req, res) => {
 
     try {
         // call catalogServer to handle purchase and stock update
-        const response = await axios.post(`http://localhost:4000/handleBookPurchase`, {
+        const response = await axios.post(`http://catalogServer:4000/handleBookPurchase`, {
             id: id
         });
 

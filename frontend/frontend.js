@@ -12,7 +12,7 @@ app.get('/Bazar/search/:topic', async (req, res) => {
     const topic = req.params.topic;
     console.log('topic:', topic);
 
-    const response = await axios.get('http://localhost:4000/query', {
+    const response = await axios.get('http://catalogServer:4000/query', {
       params: { topic }
     });
 
@@ -32,7 +32,7 @@ app.get('/Bazar/info/:id', async (req, res) => {
     const id = req.params.id;
     console.log('id:', id);
 
-    const response = await axios.get('http://localhost:4000/query', {
+    const response = await axios.get('http://catalogServer:4000/query', {
       params: { id }
     });
 
@@ -50,7 +50,7 @@ app.post('/Bazar/purchase/:id', async (req, res) => {
   const id = req.params.id;
   console.log('id:', id);
   try {
-      const response = await axios.post('http://localhost:5000/purchase', { id: id });
+      const response = await axios.post('http://orderServer:5000/purchase', { id: id });
 
       if (response.status === 200) {
           res.status(200).json(response.data);
