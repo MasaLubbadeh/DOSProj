@@ -1,7 +1,9 @@
 # Bazar.com: A Multi-Tier Online Book Store
+*This is the report for both Part 1 only.*
 
 ### Distributed and Operating Systems  
 **Bazar.com - The World's Smallest Book Store**
+
 
 Bazar.com is a simple, multi-tier online bookstore designed as a distributed application. This project demonstrates a RESTful microservices architecture, with separate components for catalog management and order processing.
 
@@ -43,26 +45,29 @@ Bazar.com consists of:
 ### Using Docker
 1. Clone the repository to your local machine:
 
-    ```bash
+    
+bash
     git clone https://github.com/MasaLubbadeh/DOSProj.git
     cd DOSProj
-    ```
+
 
 2. Build the Docker images and start the containers:
 
-    ```bash
+    
+bash
     docker-compose up --build
-    ```
+
      ![Docker Compose](images/dockerCompose.png)
      ![Docker Compose](images/dockerCreated.png)
 
    ### If you are not using Docker
 1. Clone the repository to your local machine:
 
-    ```bash
+    
+bash
     git clone https://github.com/MasaLubbadeh/DOSProj.git
     cd DOSProj
-    ```
+
 
 2. Open the folder using VSCode or your preferred editor.
 
@@ -84,13 +89,13 @@ Bazar.com consists of:
 You can test the APIs using Postman or other tools. Here are the endpoints available:
 
 - **Purchase Book**:
-  - **Endpoint**: `http://localhost:3000/Bazar/purchase/{id}`
+  - **Endpoint**: http://localhost:3000/Bazar/purchase/{id}
   
 - **Get Book Information**:
-  - **Endpoint**: `http://localhost:3000/Bazar/info/{id}`
+  - **Endpoint**: http://localhost:3000/Bazar/info/{id}
 
 - **Search Books by Topic**:
-  - **Endpoint**: `http://localhost:3000/Bazar/search/{topic}`
+  - **Endpoint**: http://localhost:3000/Bazar/search/{topic}
 
 ## Sample Outputs
 - For successful purchases, you will receive a message confirming the purchase along with details.
@@ -168,4 +173,3 @@ Node.js was chosen for this project due to its non-blocking, event-driven archit
 -Masa Lubbadeh
 
 -Raya Hindi
-
