@@ -20,20 +20,32 @@ const getReplicaUrl = () => {
   return replicas[currentReplica];
 };
 
-// route to search for topics
-app.get('/Bazar/search/:topic', async (req, res) => {
-  try {
-    const topic = req.params.topic;
-    console.log('topic:', topic);
 
-    const response = await axios.get('http://catalogServer:4000/query', {
+// Route to search for books by topic with caching and load balancing
+app.get('/Bazar/search/:topic', async (req, res) => {
+  const topic = req.params.topic;
+
+  // Check cache first
+  if (cache[topic]) {
+    console.log('Serving from cache');
+    return res.status(200).json(cache[topic]);
+  }
+
+  try {
+    const replicaUrl = getReplicaUrl(); // Get the replica URL using round-robin
+    console.log(`Forwarding request to ${replicaUrl}`);
+
+    const response = await axios.get(`${replicaUrl}/query`, {
       params: { topic }
     });
 
+    // Cache the response
+    cache[topic] = response.data;
     res.status(200).json(response.data);
+
   } catch (error) {
     if (error.response) {
-      return res.status(error.response.status).json(error.response.data);
+      res.status(error.response.status).json(error.response.data);
     } else {
       console.error('Error forwarding request:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -41,20 +53,31 @@ app.get('/Bazar/search/:topic', async (req, res) => {
   }
 });
 
-// route to get info by ID
+// Route to get info by book ID with caching and load balancing
 app.get('/Bazar/info/:id', async (req, res) => {
-  try {
-    const id = req.params.id;
-    console.log('id:', id);
+  const id = req.params.id;
 
-    const response = await axios.get('http://catalogServer:4000/query', {
+  // Check cache first
+  if (cache[id]) {
+    console.log('Serving from cache');
+    return res.status(200).json(cache[id]);
+  }
+
+  try {
+    const replicaUrl = getReplicaUrl(); // Get the replica URL using round-robin
+    console.log(`Forwarding request to ${replicaUrl}`);
+
+    const response = await axios.get(`${replicaUrl}/query`, {
       params: { id }
     });
 
+    // Cache the response
+    cache[id] = response.data;
     res.status(200).json(response.data);
+
   } catch (error) {
     if (error.response) {
-      return res.status(error.response.status).json(error.response.data);
+      res.status(error.response.status).json(error.response.data);
     } else {
       console.error('Error forwarding request:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -62,28 +85,33 @@ app.get('/Bazar/info/:id', async (req, res) => {
   }
 });
 
-app.post('/Bazar/purchase/:id', async (req, res) => {
-  const id = req.params.id;
-  console.log('id:', id);
-  try {
-    const response = await axios.post('http://orderServer:5000/purchase', { id: id });
+// Route to handle book purchase (decrement quantity) with caching and load balancing
+app.post('/Bazar/purchase', async (req, res) => {
+  const { id } = req.body;
 
-    if (response.status === 200) {
-      res.status(200).json(response.data);
-    } else {
-      res.status(response.status).json(response.data);
-    }
+  try {
+    // Get the current replica to handle the request
+    const replicaUrl = getReplicaUrl();
+
+    console.log(`Forwarding purchase request to ${replicaUrl}`);
+
+    // Send purchase request to the catalog server to handle quantity decrement
+    const response = await axios.post(`${replicaUrl}/handleBookPurchase`, { id });
+
+    // After successfully purchasing the book, invalidate the cache for the updated book info
+    delete cache[id]; // Invalidate cache as the data has changed
+    res.status(200).json(response.data);
+
   } catch (error) {
     if (error.response) {
-      return res.status(error.response.status).json(error.response.data);
+      res.status(error.response.status).json(error.response.data);
     } else {
-      console.error('catch Error processing purchase:', error.message);
-      return res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error forwarding purchase request:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Frontend server is running on port ${PORT}`);
 });
