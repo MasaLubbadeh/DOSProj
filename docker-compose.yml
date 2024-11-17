@@ -2,31 +2,33 @@ version: '3.1'
 
 services:
   frontend:
-    build: ./frontend  
+    build: ./frontend
     image: frontend-image
     ports:
-      - "3000:3000"  # frontend server
+      - "3000:3000" # frontend server
     networks:
       - Bazar-network
-    volumes:
-      - ./frontend:/frontend:ro  # ReadOnly
 
   catalogServer:
     build: ./catalogServer
     image: catalog-server-image
     ports:
-      - "4000:4000"  # catalogServer port
+      - "4000:4000" # catalogServer port
     networks:
-      - Bazar-network 
+      - Bazar-network
+    deploy:
+      replicas: 2 # Number of replicas for catalogServer
 
   orderServer:
     build: ./orderServer
-    image: order-server-image  
+    image: order-server-image
     ports:
-      - "5000:5000"  # orderServer port
+      - "5000:5000" # orderServer port
     networks:
       - Bazar-network
+    deploy:
+      replicas: 2 # Number of replicas for orderServer
 
 networks:
-  Bazar-network:  
+  Bazar-network:
     external: false
