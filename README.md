@@ -64,7 +64,6 @@ Bazar.com consists of:
      ![Docker Compose](images/dockerCompose.png)
      ![Docker Compose](images/dockerCreated.png)
   #### Part 2 in Docker
-    ![Docker Compose](images/runnungPart2.png)
    ### If you are not using Docker
 1. Clone the repository to your local machine:
 
