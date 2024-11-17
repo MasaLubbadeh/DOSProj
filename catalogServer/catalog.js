@@ -66,17 +66,34 @@ app.post('/handleBookPurchase', async (req, res) => {
   // Decrement quantity in the current replica
   book.quantity -= 1;
 
+
   // Get the URL of the other replica
   const otherReplicaUrl = getOtherReplicaUrl();
 
   try {
-    // Notify the other replica to decrement the quantity there too
-    await axios.post(`${otherReplicaUrl}/decrementQuantity`, { id });
+    // Perform the update on the other replica using retries if necessary
+    const updateReplica = async () => {
+      try {
+        await axios.post(`${otherReplicaUrl}/decrementQuantity`, { id });
+        return true;
+      } catch (error) {
+        console.error('Error updating the other replica:', error.message);
+        return false;
+      }
+    };
+
+    // Try to update the other replica (with retries or handle failure)
+    const success = await updateReplica();
+
+    if (!success) {
+      // If the other replica couldn't be updated, handle the error, revert the change or retry
+      return res.status(500).json({ message: 'Error updating other replica' });
+    }
+
     return res.status(200).json({ message: `Book ${book.title} purchased successfully`, book });
   } catch (error) {
-    console.error('Error updating the other replica:', error.message);
-    // If we can't update the other replica, we can either revert the decrement or handle it as needed
-    res.status(500).json({ message: 'Internal error while updating other replica' });
+    console.error('Error during purchase process:', error.message);
+    res.status(500).json({ message: 'Internal error during purchase process' });
   }
 });
 

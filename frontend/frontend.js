@@ -99,7 +99,14 @@ app.post('/Bazar/purchase', async (req, res) => {
     const response = await axios.post(`${replicaUrl}/handleBookPurchase`, { id });
 
     // After successfully purchasing the book, invalidate the cache for the updated book info
-    delete cache[id]; // Invalidate cache as the data has changed
+    // Only invalidate cache if the book exists in the cache
+    if (cache[id]) {
+      delete cache[id]; // Invalidate cache as the data has changed
+      console.log("Book with id=${id} removed from cache");
+    } else {
+      console.log("Book with id=${id} not found in cache");
+    }
+    ///  delete cache[id]; // Invalidate cache as the data has changed
     res.status(200).json(response.data);
 
   } catch (error) {
