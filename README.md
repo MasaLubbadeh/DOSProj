@@ -12,10 +12,12 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
 - [Setup and Installation](#setup-and-installation)
   - [Using Docker](#using-docker)
   - [If you are not using Docker](#if-you-are-not-using-docker)
-- [Testing the APIs](#testing-the-apis)
-- [Sample Outputs](#sample-outputs)
-- [Screenshots](#screenshots)
-- [Program Design](#program-design)
+- [Part1]
+  - [Testing the APIs](#testing-the-apis)
+  - [Sample Outputs](#sample-outputs)
+  - [Screenshots](#screenshots)
+  - [Program Design](#program-design)
+- [Part2]
 - [Why Node.js](#why-nodejs)
 - [Contributors](#contributors)
 
