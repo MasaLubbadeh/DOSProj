@@ -63,7 +63,7 @@ Bazar.com consists of:
   #### Part 1 in Docker
   
       ![Docker Compose](https://github.com/MasaLubbadeh/DOSProj/raw/main/images/dockerCompose.png)
-     
+      
      ![Docker Compose1](images/dockerCreated.png)
      
   #### Part 2 in Docker
