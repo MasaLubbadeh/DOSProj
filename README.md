@@ -4,7 +4,6 @@
 ### Distributed and Operating Systems  
 **Bazar.com - The World's Smallest Book Store**
 
-
 Bazar.com is a simple, multi-tier online bookstore designed as a distributed application. This project demonstrates a RESTful microservices architecture, with separate components for catalog management and order processing.
 
 ## Table of Contents
@@ -14,20 +13,18 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
     - [Part 1 in Docker](#part-1-in-docker)
     - [Part 2 in Docker](#part-2-in-docker)
   - [If you are not using Docker](#if-you-are-not-using-docker)
-- [Part1](#part1)
+- [Part 1](#part-1)
   - [Testing the APIs](#testing-the-apis)
   - [Sample Outputs](#sample-outputs)
   - [Screenshots](#screenshots)
   - [Program Design](#program-design)
-- [Part2](#part2)
-  - [program design](#program-design2)
-  - [How It Works] 
-  - [possible improvements]
-  - [How to run the program]
+- [Part 2](#part-2)
+  - [Program Design](#program-design2)
+  - [How It Works](#how-it-works)
+  - [Possible Improvements](#possible-improvements)
+  - [How to Run the Program](#how-to-run-the-program)
 - [Why Node.js](#why-nodejs)
 - [Contributors](#contributors)
-
-
 
 ## Prerequisites
 Before running the project, ensure you have the following installed:
@@ -68,7 +65,7 @@ Bazar.com consists of:
   
     ![Docker-running](images/runnungPart2.png)
 
-   ### If you are not using Docker
+### If you are not using Docker
 1. Clone the repository to your local machine:
 
     ```bash
@@ -91,7 +88,8 @@ Bazar.com consists of:
    - **Frontend**
      
      ![Frontend folder](images/frontend.png)
-## part1
+
+## Part 1
 ### Testing the APIs
 You can test the APIs using Postman or other tools. Here are the endpoints available:
 
@@ -154,7 +152,7 @@ Here are some screenshots of the application in action:
 Bazar.com is structured as a microservices application, consisting of a **Catalog Server** and an **Order Server**. The Catalog Server handles book information and queries, while the Order Server manages purchase transactions. The frontend connects users to these services seamlessly.
 
 #### How It Works
-1. **User Interaction**: There is no frontend to this project,user deals with the provided apis,all requests are sent to the frontend server.
+1. **User Interaction**: There is no frontend to this project, the user interacts with the provided APIs, and all requests are sent to the frontend server.
 2. **Service Communication**: The frontend makes API calls to the Catalog Server to fetch book details and to the Order Server to process purchases.
 3. **Database**: Both servers connect to a database to retrieve and store data as needed.
 
@@ -177,7 +175,5 @@ Bazar.com is structured as a microservices application, consisting of a **Catalo
 Node.js was chosen for this project due to its non-blocking, event-driven architecture, which allows for efficient handling of multiple connections simultaneously. This makes it ideal for building fast and scalable network applications, especially for an online bookstore where numerous users may access the service concurrently. Additionally, the vast ecosystem of Node.js libraries and packages simplifies development, enabling quicker implementation of features and enhancements.
 
 ## Contributors
--Masa Lubbadeh
-
--Raya Hindi
-
+- Masa Lubbadeh
+- Raya Hindi
