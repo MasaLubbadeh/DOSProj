@@ -16,8 +16,14 @@ services:
       - "4000:4000" # catalogServer port
     networks:
       - Bazar-network
-    deploy:
-      replicas: 2 # Number of replicas for catalogServer
+
+  catalogServerReplica:
+    build: ./catalogServer
+    image: catalog-server-image
+    ports:
+      - "4001:4000" # catalogServer port
+    networks:
+      - Bazar-network
 
   orderServer:
     build: ./orderServer
@@ -26,8 +32,14 @@ services:
       - "5000:5000" # orderServer port
     networks:
       - Bazar-network
-    deploy:
-      replicas: 2 # Number of replicas for orderServer
+
+  orderServerReplica:
+    build: ./orderServer
+    image: order-server-image
+    ports:
+      - "5001:5000" # orderServer port
+    networks:
+      - Bazar-network
 
 networks:
   Bazar-network:

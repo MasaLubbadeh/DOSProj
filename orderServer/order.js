@@ -10,8 +10,8 @@ app.use(express.json());
 let currentReplica = 0; // To keep track of which replica to use next
 const getReplicaUrl = () => {
     const replicas = [
-        'http://catalogServer1:4000', // First replica
-        'http://catalogServer2:4000'  // Second replica
+        'http://catalogServer:4000', // First replica
+        'http://catalogServerReplica:4000'  // Second replica
     ];
     currentReplica = (currentReplica + 1) % replicas.length; // Alternate between 0 and 1
     return replicas[currentReplica];

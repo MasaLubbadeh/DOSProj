@@ -11,8 +11,8 @@ let currentReplica = 0; // To keep track of which replica we are working with
 // Function to get the URL of the other replica (round-robin logic)
 const getOtherReplicaUrl = () => {
   const replicas = [
-    'http://catalogServer1:4000', // First replica
-    'http://catalogServer2:4000'  // Second replica
+    'http://catalogServer:4000', // First replica
+    'http://catalogServerReplica:4000'  // Second replica
   ];
   return replicas[(currentReplica + 1) % replicas.length]; // Switch between 0 and 1
 };
