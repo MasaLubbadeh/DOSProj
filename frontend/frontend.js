@@ -4,7 +4,21 @@ import axios from 'axios';
 const app = express();
 app.use(express.json());
 
-const PORT =  3000; // Define the port
+const PORT = 3000;
+let currentReplica = 0; // To keep track of which replica to use next
+
+// Simple in-memory cache object
+const cache = {};
+
+// Round-robin function to switch between two replicas
+const getReplicaUrl = () => {
+  const replicas = [
+    'http://catalogServer1:4000', // First replica
+    'http://catalogServer2:4000'  // Second replica
+  ];
+  currentReplica = (currentReplica + 1) % replicas.length; // Alternate between 0 and 1
+  return replicas[currentReplica];
+};
 
 // route to search for topics
 app.get('/Bazar/search/:topic', async (req, res) => {
@@ -20,9 +34,10 @@ app.get('/Bazar/search/:topic', async (req, res) => {
   } catch (error) {
     if (error.response) {
       return res.status(error.response.status).json(error.response.data);
-  }else{
-    console.error('Error forwarding request:', error.message);
-    res.status(500).json({ error: 'Internal Server Error' }); }
+    } else {
+      console.error('Error forwarding request:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 });
 
@@ -40,9 +55,10 @@ app.get('/Bazar/info/:id', async (req, res) => {
   } catch (error) {
     if (error.response) {
       return res.status(error.response.status).json(error.response.data);
-  }else{
-    console.error('Error forwarding request:', error.message);
-    res.status(500).json({ error: 'Internal Server Error' }); }
+    } else {
+      console.error('Error forwarding request:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 });
 
@@ -50,20 +66,20 @@ app.post('/Bazar/purchase/:id', async (req, res) => {
   const id = req.params.id;
   console.log('id:', id);
   try {
-      const response = await axios.post('http://orderServer:5000/purchase', { id: id });
+    const response = await axios.post('http://orderServer:5000/purchase', { id: id });
 
-      if (response.status === 200) {
-          res.status(200).json(response.data);
-      } else {
-          res.status(response.status).json(response.data);
-      }
+    if (response.status === 200) {
+      res.status(200).json(response.data);
+    } else {
+      res.status(response.status).json(response.data);
+    }
   } catch (error) {
-      if (error.response) {
-          return res.status(error.response.status).json(error.response.data);
-      } else {
-          console.error('catch Error processing purchase:', error.message);
-          return res.status(500).json({ error: 'Internal Server Error' });
-      }
+    if (error.response) {
+      return res.status(error.response.status).json(error.response.data);
+    } else {
+      console.error('catch Error processing purchase:', error.message);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 });
 

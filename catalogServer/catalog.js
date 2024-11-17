@@ -9,7 +9,6 @@ app.get("/query", (req, res) => {
   const { topic, id } = req.query;
 
   if (id) {
-    lkjfdbg
     const book = getBookInfo(id);
     if (book) {
       return res.status(200).json({
