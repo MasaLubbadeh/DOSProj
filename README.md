@@ -12,12 +12,12 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
 - [Setup and Installation](#setup-and-installation)
   - [Using Docker](#using-docker)
   - [If you are not using Docker](#if-you-are-not-using-docker)
-- [Part1]
+- [Part1](#part1)
   - [Testing the APIs](#testing-the-apis)
   - [Sample Outputs](#sample-outputs)
   - [Screenshots](#screenshots)
   - [Program Design](#program-design)
-- [Part2]
+- [Part2](#part2)
 - [Why Node.js](#why-nodejs)
 - [Contributors](#contributors)
 
@@ -83,8 +83,8 @@ Bazar.com consists of:
    - **Frontend**
      
      ![Frontend folder](images/frontend.png)
-
-## Testing the APIs
+## part1
+### Testing the APIs
 You can test the APIs using Postman or other tools. Here are the endpoints available:
 
 - **Purchase Book**:
@@ -96,11 +96,11 @@ You can test the APIs using Postman or other tools. Here are the endpoints avail
 - **Search Books by Topic**:
   - **Endpoint**: `http://localhost:3000/Bazar/search/{topic}`
 
-## Sample Outputs
+### Sample Outputs
 - For successful purchases, you will receive a message confirming the purchase along with details.
 - For unsuccessful purchases (e.g., book not found, out of stock), appropriate error messages will be returned.
 
-## Screenshots
+### Screenshots
 Here are some screenshots of the application in action:
 
 - **When Searching for a Specific Book**:
@@ -141,27 +141,27 @@ Here are some screenshots of the application in action:
   
   ![Docker Desktop](images/dockerDesktop.png)
 
-## Program Design
-### Overview
+### Program Design
+#### Overview
 Bazar.com is structured as a microservices application, consisting of a **Catalog Server** and an **Order Server**. The Catalog Server handles book information and queries, while the Order Server manages purchase transactions. The frontend connects users to these services seamlessly.
 
-### How It Works
+#### How It Works
 1. **User Interaction**: There is no frontend to this project,user deals with the provided apis,all requests are sent to the frontend server.
 2. **Service Communication**: The frontend makes API calls to the Catalog Server to fetch book details and to the Order Server to process purchases.
 3. **Database**: Both servers connect to a database to retrieve and store data as needed.
 
-### Design Trade-offs
+#### Design Trade-offs
 - **Microservices Architecture**: This design allows for better scalability and maintainability. However, it introduces complexity in service management and inter-service communication.
 - **Use of Docker**: Containerization simplifies deployment and dependency management, but can require additional resources and initial setup time.
 
-### Possible Improvements and Extensions
+#### Possible Improvements and Extensions
 - **User Interface**: Develop a more intuitive and visually appealing user interface to enhance user experience and accessibility.
   
 - **Database Integration**: Implement a real database system (such as MongoDB or PostgreSQL) instead of using a file-based storage solution to improve data management, scalability, and performance.
 
 - **Additional APIs**: Add more APIs to expand the functionality of the application, allowing for more features and better integration with other systems or services.
 
-### Known Issues
+#### Known Issues
 - **Performance**: The application may experience latency under heavy load due to synchronous API calls.
 - **Error Handling**: Currently, error messages may not provide enough context for debugging.
 
