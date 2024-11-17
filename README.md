@@ -11,8 +11,8 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
 - [Prerequisites](#prerequisites)
 - [Setup and Installation](#setup-and-installation)
   - [Using Docker](#using-docker)
-    - [Part1](#part1_in_docker)
-    - [Part2](#part2_in_docker)
+    - [Part 1 in Docker](#part-1-in-docker)
+    - [Part 2 in Docker](#part-2-in-docker)
   - [If you are not using Docker](#if-you-are-not-using-docker)
 - [Part1](#part1)
   - [Testing the APIs](#testing-the-apis)
@@ -52,21 +52,20 @@ Bazar.com consists of:
 
 ### Using Docker
 1. Clone the repository to your local machine:
-
+#### Part 1 in Docker
     ```bash
     git clone https://github.com/MasaLubbadeh/DOSProj.git
     cd DOSProj
     ```
 
 2. Build the Docker images and start the containers:
-#### part1 in docker
     ```bash
     docker-compose up --build
     ```
      ![Docker Compose](images/dockerCompose.png)
      ![Docker Compose](images/dockerCreated.png)
-#### part2 in docker
-    ddddd
+  #### Part 2 in Docker
+sss
    ### If you are not using Docker
 1. Clone the repository to your local machine:
 
