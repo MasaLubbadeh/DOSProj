@@ -59,13 +59,13 @@ Bazar.com consists of:
     ```
 
 2. Build the Docker images and start the containers:
-#### part1Installation
+#### part1:
     ```bash
     docker-compose up --build
     ```
      ![Docker Compose](images/dockerCompose.png)
      ![Docker Compose](images/dockerCreated.png)
-#### part2Installation
+#### part2:
     ddddd
    ### If you are not using Docker
 1. Clone the repository to your local machine:
