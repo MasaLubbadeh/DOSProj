@@ -56,15 +56,15 @@ Bazar.com consists of:
     git clone https://github.com/MasaLubbadeh/DOSProj.git
     cd DOSProj
     ```
-#### Part 1 in Docker
 2. Build the Docker images and start the containers:
     ```bash
     docker-compose up --build
     ```
+  #### Part 1 in Docker
      ![Docker Compose](images/dockerCompose.png)
      ![Docker Compose](images/dockerCreated.png)
   #### Part 2 in Docker
-      ![Running Part 2 in Docker](images/runnungPart2.png)
+    ![Docker Compose](images/runnungPart2.png)
    ### If you are not using Docker
 1. Clone the repository to your local machine:
 
