@@ -11,6 +11,8 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
 - [Prerequisites](#prerequisites)
 - [Setup and Installation](#setup-and-installation)
   - [Using Docker](#using-docker)
+    - [Part1](#part1Installation)
+    - [Part2](#part2Installation)
   - [If you are not using Docker](#if-you-are-not-using-docker)
 - [Part1](#part1)
   - [Testing the APIs](#testing-the-apis)
@@ -18,6 +20,10 @@ Bazar.com is a simple, multi-tier online bookstore designed as a distributed app
   - [Screenshots](#screenshots)
   - [Program Design](#program-design)
 - [Part2](#part2)
+  - [program design](#program-design2)
+  - [How It Works] 
+  - [possible improvements]
+  - [How to run the program]
 - [Why Node.js](#why-nodejs)
 - [Contributors](#contributors)
 
@@ -53,13 +59,14 @@ Bazar.com consists of:
     ```
 
 2. Build the Docker images and start the containers:
-
+#### part1Installation
     ```bash
     docker-compose up --build
     ```
      ![Docker Compose](images/dockerCompose.png)
      ![Docker Compose](images/dockerCreated.png)
-
+#### part2Installation
+    ddddd
    ### If you are not using Docker
 1. Clone the repository to your local machine:
 
