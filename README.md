@@ -59,7 +59,7 @@ Bazar.com consists of:
 2. Build the Docker images and start the containers:
     ```bash
     docker-compose up --build
-    ```
+
   #### Part 1 in Docker
   
      ![Docker Compose](images/dockerCompose.png)
