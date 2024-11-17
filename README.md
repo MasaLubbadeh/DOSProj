@@ -3,6 +3,8 @@
 ### Distributed and Operating Systems  
 **Bazar.com - The World's Smallest Book Store**
 
+"This is the report for both part1 and part2"
+
 Bazar.com is a simple, multi-tier online bookstore designed as a distributed application. This project demonstrates a RESTful microservices architecture, with separate components for catalog management and order processing.
 
 ## Table of Contents
